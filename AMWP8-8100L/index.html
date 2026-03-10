@@ -73,16 +73,35 @@
     to   { transform: translateY(0);     opacity: 1; }
   }
 
-  .logo-img { height: 34px; width: auto; object-fit: contain; filter: brightness(10) saturate(0); }
+  .logo-img { height: 34px; width: auto; object-fit: contain; }
 
-  .logo-fallback {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: white;
+  /* Header brand text logo */
+  .header-brand-block {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1;
   }
-  .logo-fallback span { color: var(--orange); }
+
+  .header-dingli {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .header-exceed {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
 
   .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
 
@@ -426,6 +445,28 @@
     z-index: 1;
   }
 
+  .print-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .print-section-header .section-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px var(--orange-glow);
+  }
+
   .section-label-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 12px;
@@ -590,13 +631,13 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
     line-height: 1;
   }
 
   .footer-dingli {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 900;
     letter-spacing: 4px;
     color: #ffffff;
@@ -608,11 +649,10 @@
 
   .footer-exceed {
     font-family: 'Barlow', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 2px;
     color: var(--text-secondary);
-    text-transform: none;
     font-style: italic;
   }
 
@@ -652,14 +692,9 @@
 
 <!-- HEADER -->
 <header>
-  <a href="https://dinglisaarc.com" target="_blank" rel="noopener">
-    <img
-      src="https://dinglisaarc.com/wp-content/uploads/2024/05/dingli-saarc-india-logo.svg"
-      alt="DINGLI SAARC"
-      class="logo-img"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
-    />
-    <div class="logo-fallback" style="display:none;">DINGLI <span>SAARC</span></div>
+  <a href="https://dinglisaarc.com" target="_blank" rel="noopener" class="header-brand-block">
+    <div class="header-dingli">DINGLI</div>
+    <div class="header-exceed">Exceed New Heights</div>
   </a>
   <div class="header-right">
     <div class="header-badge">Machine Specification</div>
@@ -773,7 +808,11 @@
 
 <!-- PRINT LABEL -->
 <div class="print-section reveal">
-  <div class="section-label-title">↓ Printable Machine Label</div>
+  <div class="print-section-header">
+    <div class="section-icon"><svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:white"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg></div>
+    <span>Printable Machine Label</span>
+    <div class="section-line" style="flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.07),transparent);margin-left:12px;"></div>
+  </div>
 
   <div class="printable-label">
     <div id="qrcode-label"></div>
