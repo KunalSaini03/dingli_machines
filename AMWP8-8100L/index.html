@@ -73,7 +73,7 @@
     to   { transform: translateY(0);     opacity: 1; }
   }
 
-  .logo-img { height: 34px; width: auto; object-fit: contain; }
+  .logo-img { height: 34px; width: auto; object-fit: contain; filter: brightness(10) saturate(0); }
 
   .logo-fallback {
     font-family: 'Barlow Condensed', sans-serif;
@@ -149,10 +149,7 @@
   .hero-inner {
     max-width: 860px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: clamp(20px,4vw,40px);
-    align-items: start;
+    display: block;
     position: relative;
     z-index: 2;
   }
@@ -224,12 +221,12 @@
 
   .hero-tagline {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(12px,2.5vw,15px);
-    font-weight: 400;
+    font-size: clamp(15px,3.5vw,20px);
+    font-weight: 500;
     color: var(--text-secondary);
     letter-spacing: 3px;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 12px;
     animation: fadeUp 0.6s ease 0.3s both;
   }
 
@@ -573,26 +570,6 @@
     flex-wrap: wrap;
   }
 
-  .footer-logo {
-    height: 26px;
-    width: auto;
-    object-fit: contain;
-    opacity: 0.65;
-    filter: brightness(2) saturate(0);
-    transition: opacity 0.2s, filter 0.2s;
-  }
-
-  .footer-logo:hover { opacity: 1; filter: brightness(1) saturate(1); }
-
-  .footer-tagline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-  }
-
   .footer-link {
     font-size: 13px;
     color: var(--text-dim);
@@ -609,6 +586,36 @@
     color: var(--orange);
   }
 
+  .footer-brand-block {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1;
+  }
+
+  .footer-dingli {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-brand-block:hover .footer-dingli { color: var(--orange); }
+
+  .footer-exceed {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    text-transform: none;
+    font-style: italic;
+  }
+
   /* ── PRINT ── */
   @media print {
     header, .hero, .specs-wrapper, footer, .action-buttons, .section-label-title { display: none !important; }
@@ -619,27 +626,10 @@
 
   /* ── RESPONSIVE: iPad ── */
   @media (max-width: 768px) {
-    .hero-inner { grid-template-columns: 1fr; }
-
-    .qr-panel {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-align: left;
-      padding: 14px 18px;
-      max-width: 100%;
-    }
-
-    .qr-panel-stripe { display: none; }
-
-    .qr-scan-label, .qr-model-tag { text-align: left; margin-top: 2px; }
-
     .key-stats { grid-template-columns: repeat(2,1fr); }
-
     .key-stats .stat-item:nth-child(2) { border-right: none; }
     .key-stats .stat-item:nth-child(1),
     .key-stats .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
-
     .header-badge { display: none; }
   }
 
@@ -647,27 +637,14 @@
   @media (max-width: 480px) {
     header { height: 58px; }
     .logo-img { height: 26px; }
-
     .hero h1 { letter-spacing: -0.5px; }
-
     .spec-name { width: 50%; }
-
-    .printable-label {
-      flex-direction: column;
-      align-items: flex-start;
-      max-width: 100%;
-    }
-
+    .printable-label { flex-direction: column; align-items: flex-start; max-width: 100%; }
     .label-divider { width: 100%; height: 1px; align-self: auto; }
-
     .action-buttons { flex-direction: column; }
     .btn { width: 100%; justify-content: center; }
-
     .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
     .footer-tagline { display: none; }
-
-    .qr-panel { flex-direction: column; text-align: center; }
-    .qr-scan-label, .qr-model-tag { text-align: center; }
   }
 </style>
 </head>
@@ -729,14 +706,6 @@
           <div class="stat-label">Battery System</div>
         </div>
       </div>
-    </div>
-
-    <!-- QR -->
-    <div class="qr-panel">
-      <div class="qr-panel-stripe"></div>
-      <div id="qrcode-hero"></div>
-      <div class="qr-scan-label">Scan for full specs</div>
-      <div class="qr-model-tag">AMWP8-8100L</div>
     </div>
   </div>
 </div>
@@ -838,32 +807,32 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <a href="https://dinglisaarc.com" target="_blank" rel="noopener">
-      <img
-        src="https://dinglisaarc.com/wp-content/uploads/2024/05/dingli-saarc-india-logo.svg"
-        alt="DINGLI SAARC"
-        class="footer-logo"
-        onerror="this.style.display='none';"
-      />
+    <a href="https://dinglisaarc.com" target="_blank" rel="noopener" class="footer-brand-block">
+      <div class="footer-dingli">DINGLI</div>
+      <div class="footer-exceed">Exceed New Heights</div>
     </a>
-    <div class="footer-tagline">Reaching New Heights · Safely &amp; Sustainably</div>
     <a href="https://dinglisaarc.com" class="footer-link" target="_blank">dinglisaarc.com</a>
     <div class="footer-contact">📞 1800-572-5720</div>
   </div>
 </footer>
 
+<!-- Hidden high-res QR used only for download (not visible) -->
+<div id="qrcode-download" style="position:absolute;left:-9999px;top:-9999px;width:400px;height:400px;overflow:hidden;"></div>
+
 <script>
   const MACHINE_URL = "https://kunalsaini03.github.io/dingli_machines/AMWP8-8100L/";
 
-  // Generate QR codes
-  new QRCode(document.getElementById("qrcode-hero"), {
-    text: MACHINE_URL, width: 112, height: 112,
+  // QR for the printable label (visible)
+  new QRCode(document.getElementById("qrcode-label"), {
+    text: MACHINE_URL, width: 86, height: 86,
     colorDark: "#0a1520", colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
   });
 
-  new QRCode(document.getElementById("qrcode-label"), {
-    text: MACHINE_URL, width: 86, height: 86,
+  // Hidden high-res QR purely for download
+  const dlContainer = document.getElementById("qrcode-download");
+  new QRCode(dlContainer, {
+    text: MACHINE_URL, width: 400, height: 400,
     colorDark: "#0a1520", colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
   });
@@ -877,52 +846,57 @@
       }
     });
   }, { threshold: 0.08 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Download QR
+  // Download QR — uses the hidden 400px canvas for crisp output
   function downloadQR(btn) {
     const origHTML = btn.innerHTML;
     btn.innerHTML = '⏳ Generating...';
     btn.disabled = true;
 
     setTimeout(() => {
-      const container = document.getElementById("qrcode-hero");
-      const canvas = container.querySelector("canvas");
-      const img    = container.querySelector("img");
-      const qrSize = 280, pad = 32, footH = 64;
+      const dlCont = document.getElementById("qrcode-download");
+      const canvas = dlCont.querySelector("canvas");
+      const img    = dlCont.querySelector("img");
 
+      const qrSize = 400, pad = 40, topBar = 10, footH = 76;
       const out = document.createElement("canvas");
       out.width  = qrSize + pad * 2;
-      out.height = qrSize + pad * 2 + footH;
+      out.height = topBar + pad + qrSize + pad + footH;
       const ctx  = out.getContext("2d");
 
       function render(src) {
+        // White background
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, out.width, out.height);
 
         // Orange top bar
         ctx.fillStyle = "#F26522";
-        ctx.fillRect(0, 0, out.width, 8);
+        ctx.fillRect(0, 0, out.width, topBar);
 
-        // QR
-        ctx.drawImage(src, pad, pad + 8, qrSize, qrSize);
+        // QR code — drawn at native resolution, no upscaling artifacts
+        ctx.drawImage(src, 0, 0, src.width || src.naturalWidth, src.height || src.naturalHeight,
+                      pad, topBar + pad, qrSize, qrSize);
 
-        // Dark footer
+        // Dark footer band
+        const footY = topBar + pad + qrSize + pad;
         ctx.fillStyle = "#0a1520";
-        ctx.fillRect(0, qrSize + pad + 8, out.width, footH);
+        ctx.roundRect ? ctx.roundRect(0, footY, out.width, footH, [0,0,6,6])
+                      : ctx.fillRect(0, footY, out.width, footH);
+        ctx.fill();
 
         // Model name
         ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 17px Arial, sans-serif";
+        ctx.font = "bold 22px Arial, sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("AMWP8-8100L", out.width / 2, qrSize + pad + 8 + 27);
+        ctx.fillText("AMWP8-8100L", out.width / 2, footY + 32);
 
         // Subtitle
         ctx.fillStyle = "#F26522";
-        ctx.font = "11px Arial, sans-serif";
-        ctx.fillText("DINGLI SAARC  ·  Mast Lift  ·  Pure Electric  ·  Oil-Free", out.width / 2, qrSize + pad + 8 + 48);
+        ctx.font = "14px Arial, sans-serif";
+        ctx.fillText("DINGLI SAARC  ·  Mast Lift  ·  Pure Electric  ·  Oil-Free", out.width / 2, footY + 56);
 
+        // Download
         const a = document.createElement("a");
         a.download = "QR-AMWP8-8100L.png";
         a.href = out.toDataURL("image/png");
@@ -941,6 +915,7 @@
         t.crossOrigin = "anonymous";
         t.onload = () => render(t);
         t.onerror = () => {
+          // Fallback: just download the img src directly
           const a = document.createElement("a");
           a.download = "QR-AMWP8-8100L.png";
           a.href = img.src;
@@ -956,7 +931,7 @@
         btn.innerHTML = origHTML;
         btn.disabled = false;
       }
-    }, 300);
+    }, 400);
   }
 </script>
 </body>
